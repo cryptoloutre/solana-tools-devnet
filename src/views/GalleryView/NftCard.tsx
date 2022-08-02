@@ -93,7 +93,7 @@ export const NftCard: FC<Props> = ({
       <div className="sm:flex justify-center">
 
         <SelectBurnButton tokenMintAddress={tokenMintAddress} connection={connection} publicKey={publicKey} toBurn={toBurn} />
-        <a target="_blank" className="btn text-xs bg-[#9945FF] hover:bg-[#7a37cc] uppercase sm:w-[50%] sm:ml-1 mb-2 sm:mb-4" href={"https://solscan.io/token/" + tokenMintAddress}>Check Solscan</a>
+        <a target="_blank" className="btn text-xs bg-[#9945FF] hover:bg-[#7a37cc] uppercase sm:w-[50%] sm:ml-1 mb-2 sm:mb-4" href={"https://solscan.io/token/" + tokenMintAddress +'?cluster=devnet'}>Check Solscan</a>
       </div>
     </div>
   );

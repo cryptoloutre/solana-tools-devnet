@@ -1289,7 +1289,7 @@ export const MultiSenderView: FC = ({ }) => {
 
 
                       {signature != '' && <div className="font-semibold text-xl mt-4">
-                        ✅ Successfuly sent! Check it <a target="_blank" href={'https://solscan.io/tx/' + signature}><strong className="underline">here</strong></a>
+                        ✅ Successfuly sent! Check it <a target="_blank" href={'https://solscan.io/tx/' + signature +'?cluster=devnet'}><strong className="underline">here</strong></a>
                       </div>
                       }
 
@@ -1624,7 +1624,7 @@ export const MultiSenderView: FC = ({ }) => {
 
                     {signature != '' &&
                       <div className="font-semibold text-xl mt-4">
-                        ✅ Successfuly sent! Check it <a target="_blank" href={'https://solscan.io/tx/' + signature}><strong className="underline">here</strong></a>
+                        ✅ Successfuly sent! Check it <a target="_blank" href={'https://solscan.io/tx/' + signature +'?cluster=devnet'}><strong className="underline">here</strong></a>
                       </div>
                     }
 

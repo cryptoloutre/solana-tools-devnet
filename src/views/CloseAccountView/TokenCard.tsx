@@ -42,7 +42,7 @@ export const TokenCard: FC<Props> = ({
       <div className="sm:flex justify-center">
         <SelectCloseButton tokenAccount={account} connection={connection} publicKey={publicKey} toClose={toClose} />
 
-        <a target="_blank" className="btn text-xs bg-[#9945FF] hover:bg-[#7a37cc] uppercase sm:w-[50%] sm:ml-1 mb-2 sm:mb-4" href={"https://solscan.io/token/" + mint}>Check Solscan</a>
+        <a target="_blank" className="btn text-xs bg-[#9945FF] hover:bg-[#7a37cc] uppercase sm:w-[50%] sm:ml-1 mb-2 sm:mb-4" href={"https://solscan.io/token/" + mint +'?cluster=devnet'}>Check Solscan</a>
       </div>
     </div>
   );
