@@ -111,7 +111,7 @@ export async function createSPLToken(owner: PublicKey, wallet: WalletContextStat
 
         const createAccountSignature = await wallet.sendTransaction(createAccountTransaction, connection, { signers: [mint_account] });
 
-        const createAccountconfirmed = await connection.confirmTransaction(createAccountSignature, 'confirmed');
+        const createAccountconfirmed = await connection.confirmTransaction(createAccountSignature, 'processed');
 
         const signature = createAccountSignature.toString()
 
