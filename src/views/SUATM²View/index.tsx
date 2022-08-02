@@ -171,6 +171,7 @@ export const SUATMMView: FC = ({ }) => {
 
     catch (error) {
       setSending(false);
+      console.log(error)
       const err = (error as any)?.message;
       if (err.includes('could not find mint')) {
         setError('The mint address seems to be wrong, verify it');
