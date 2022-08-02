@@ -148,8 +148,8 @@ export const UploadView: FC = ({ }) => {
                     <div className="font-semibold text-xl mb-[2%]">
                       ✅ Successfuly uploaded! <br />Don't forget to copy the following link:
                     </div>}
-                  <div className="font-semibold text-xl">
-                    <a href={uri}> {uri}</a>
+                  <div className="font-semibold text-xl underline">
+                    <a target="_blank" rel="noreferrer" href={uri}> {uri}</a>
                   </div>
 
                 </div>
