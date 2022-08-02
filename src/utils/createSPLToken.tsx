@@ -12,6 +12,7 @@ export async function createSPLToken(owner: PublicKey, wallet: WalletContextStat
         setTokenAddresss('')
 
         const mint_rent = await Token.getMinBalanceRentForExemptMint(connection);
+        
 
         const mint_account = Keypair.generate();
 
