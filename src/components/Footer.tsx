@@ -46,8 +46,8 @@ const Footer = () => {
             </div>
 
             <div className="text-center text-white pb-2">
-                Try on
-                <a target="_blank" rel="noreferrer" className="text-white" href="https://twitter.com/laloutre"> <strong>Devnet</strong></a>
+                Use
+                <a target="_blank" rel="noreferrer" className="text-white" href="https://solanatools.vercel.app/"> <strong>Mainnet</strong></a>
             </div>
             <div className="text-center text-white text-sm pb-2">
                 Made by
