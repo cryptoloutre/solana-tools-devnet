@@ -179,6 +179,10 @@ export const SUATMMView: FC = ({ }) => {
       else if(err.includes('Invalid name account provided')) {
         setError('This solana domain name does not exist')
       }
+
+      else {
+        setError(err)
+      }
     }
   };
 
