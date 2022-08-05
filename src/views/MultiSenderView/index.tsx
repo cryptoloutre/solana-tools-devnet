@@ -633,33 +633,72 @@ export const MultiSenderView: FC = ({ }) => {
                 <h1 className="mb-5 text-5xl">
                   Multi Send Token <SolanaLogo />
                 </h1>
-                <h3 className="font-semibold text-xl" >Supports public address, .sol domain name and Twitter handle with @</h3>
+                <h3 className="font-semibold text-xl pb-5" >Supports public address, .sol domain name and Twitter handle with @</h3>
 
                 {nbToken == '' &&
-                  <div className="sm:flex justify-center mt-[4%]">
-                    <button className="mx-2 my-2 md:w-[400px] w-[200px] bg-[#2C3B52] hover:bg-[#566274] rounded-full shadow-xl border text-white font-semibold text-xl" onClick={() => { setNbToken('one'); reset() }}>Send one token to multiple receivers</button>
-                    <button className="mx-2 my-2 md:w-[400px] w-[200px] bg-[#2C3B52] hover:bg-[#566274] rounded-full shadow-xl border text-white font-semibold text-xl" onClick={() => { setNbToken('multi'); reset() }}>Send multiple tokens to one receiver</button>
-                  </div>}
+                  <div>
+                    <div className="max-w-4xl mx-auto">
+                      <ul className="text-left leading-10">
+                        <li className="m-5" onClick={() => { setNbToken('one'); reset() }}>
+                          <div className="p-4 hover:border">
+                            <a className="text-4xl font-bold mb-5">
+                              1 token - Multiple receivers
+                            </a>
+                            <div>Send one token to multiple receivers</div>
+                          </div>
+                        </li>
 
-                {nbToken != '' &&
+                        <li className="m-5" onClick={() => { setNbToken('multi'); reset()}}>
+                          <div className="p-4 hover:border">
+                            <a className="text-4xl font-bold mb-5">
+                              Multiple token - 1 receiver
+                            </a>
+                            <div>Send multiple tokens to one receiver</div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                }
+
+                {nbToken != '' && CurrencyType == '' &&
                   <div className="flex">
                     <button className="text-white font-semibold text-xl w-[6rem] h-[2rem] mb-2 bg-[#2C3B52] hover:bg-[#566274] rounded-xl border"
                       onClick={() => { setNbToken(''); setCurrencyType('') }}>← Back</button>
                   </div>
                 }
+                {CurrencyType != '' &&
+                  <div className="flex">
+                    <button className="text-white font-semibold text-xl w-[6rem] h-[2rem] mb-2 bg-[#2C3B52] hover:bg-[#566274] rounded-xl border"
+                      onClick={() => { setCurrencyType('') }}>← Back</button>
+                  </div>
+                }
 
                 {nbToken == 'one' &&
                   <div>
-                    <div className="sm:flex justify-center">
-                      {CurrencyType == '' || CurrencyType == 'SPL' ?
-                        <button className="mx-2 my-2 w-[200px] bg-[#10c077] hover:bg-[#14f195] rounded-full shadow-xl border text-white font-semibold text-xl" onClick={() => { setCurrencyType('SOL'); reset() }}>Send SOL</button>
-                        : <button className="mx-2 my-2 w-[200px] bg-[#14f195] rounded-full shadow-xl border text-white font-semibold text-xl">Send SOL</button>
-                      }
-                      {CurrencyType == '' || CurrencyType == 'SOL' ?
-                        <button className="mx-2 my-2 w-[200px] bg-[#9945FF] hover:bg-[#ad6aff] rounded-full shadow-xl border text-white font-semibold text-xl" onClick={() => { setCurrencyType('SPL'); reset() }}>Send SPL-Token</button>
-                        : <button className="mx-2 my-2 w-[200px] bg-[#ad6aff] rounded-full shadow-xl border text-white font-semibold text-xl">Send SPL-Token</button>
-                      }
-                    </div>
+                    {CurrencyType == '' &&
+                      <div className="max-w-4xl mx-auto">
+                        <ul className="text-left leading-10">
+                          <li className="m-5" onClick={() => { setCurrencyType('SOL'); reset() }}>
+                            <div className="p-4 hover:border">
+                              <a className="text-4xl font-bold mb-5">
+                                SOL sending
+                              </a>
+                              <div>Send SOL to multiple receivers</div>
+                            </div>
+                          </li>
+
+                          <li className="m-5" onClick={() => { setCurrencyType('SPL'); reset() }}>
+                            <div className="p-4 hover:border">
+                              <a className="text-4xl font-bold mb-5">
+                                SPL token sending
+                              </a>
+                              <div>Send one SPL token type to multiple receivers</div>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    }
 
                     <div>
 
