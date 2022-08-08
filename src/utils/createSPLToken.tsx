@@ -118,6 +118,7 @@ export async function createSPLToken(owner: PublicKey, wallet: WalletContextStat
 
         
         if (createAccountconfirmed) {
+            console.log('success')
             setIscreating(false);
             setTokenAddresss(mint_account.publicKey.toBase58());
             setSignature(signature)
