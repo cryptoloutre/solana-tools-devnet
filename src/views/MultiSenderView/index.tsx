@@ -14,6 +14,7 @@ const walletPublicKey = "";
 
 export const MultiSenderView: FC = ({ }) => {
   const { connection } = useConnection();
+  const MetaplexConnection = new Connection("https://ssc-dao.genesysgo.net")
   const wallet = useWallet();
   const [walletToParsePublicKey, setWalletToParsePublicKey] =
     useState<string>(walletPublicKey);
@@ -290,7 +291,7 @@ export const MultiSenderView: FC = ({ }) => {
                   new PublicKey("58PwtjSDuFHuUkYjH9BYnnQKHfwo9reZhC2zMJv9JPkx") // SOL TLD Authority
                 );
                 const owner = await NameRegistryState.retrieve(
-                  connection,
+                  MetaplexConnection,
                   nameAccountKey
                 );
                 destPubkey = owner.registry.owner;
@@ -300,7 +301,7 @@ export const MultiSenderView: FC = ({ }) => {
               // check if it is a twitter handle
               else if (Receivers[i].includes('@')) {
                 const handle = Receivers[i].replace("@", "")
-                const registry = await getTwitterRegistry(connection, handle);
+                const registry = await getTwitterRegistry(MetaplexConnection, handle);
                 destPubkey = registry.owner;
 
               }
@@ -410,7 +411,7 @@ export const MultiSenderView: FC = ({ }) => {
                   new PublicKey("58PwtjSDuFHuUkYjH9BYnnQKHfwo9reZhC2zMJv9JPkx") // SOL TLD Authority
                 );
                 const owner = await NameRegistryState.retrieve(
-                  connection,
+                  MetaplexConnection,
                   nameAccountKey
                 );
                 destPubkey = owner.registry.owner;
@@ -420,7 +421,7 @@ export const MultiSenderView: FC = ({ }) => {
               // check if it is a twitter handle
               else if (Receivers[i].includes('@')) {
                 const handle = Receivers[i].replace("@", "")
-                const registry = await getTwitterRegistry(connection, handle);
+                const registry = await getTwitterRegistry(MetaplexConnection, handle);
                 destPubkey = registry.owner;
 
               }
@@ -508,7 +509,7 @@ export const MultiSenderView: FC = ({ }) => {
               new PublicKey("58PwtjSDuFHuUkYjH9BYnnQKHfwo9reZhC2zMJv9JPkx") // SOL TLD Authority
             );
             const owner = await NameRegistryState.retrieve(
-              connection,
+              MetaplexConnection,
               nameAccountKey
             );
             destPubkey = owner.registry.owner;
@@ -517,7 +518,7 @@ export const MultiSenderView: FC = ({ }) => {
           // check if it is a twitter handle
           else if (ReceiverAddress.includes('@')) {
             const handle = ReceiverAddress.replace("@", "")
-            const registry = await getTwitterRegistry(connection, handle);
+            const registry = await getTwitterRegistry(MetaplexConnection, handle);
             destPubkey = registry.owner;
 
           }
@@ -662,7 +663,7 @@ export const MultiSenderView: FC = ({ }) => {
               new PublicKey("58PwtjSDuFHuUkYjH9BYnnQKHfwo9reZhC2zMJv9JPkx") // SOL TLD Authority
             );
             const owner = await NameRegistryState.retrieve(
-              connection,
+              MetaplexConnection,
               nameAccountKey
             );
             destPubkey = owner.registry.owner;
@@ -671,7 +672,7 @@ export const MultiSenderView: FC = ({ }) => {
           // check if it is a twitter handle
           else if (ReceiverAddress.includes('@')) {
             const handle = ReceiverAddress.replace("@", "")
-            const registry = await getTwitterRegistry(connection, handle);
+            const registry = await getTwitterRegistry(MetaplexConnection, handle);
             destPubkey = registry.owner;
 
           }
