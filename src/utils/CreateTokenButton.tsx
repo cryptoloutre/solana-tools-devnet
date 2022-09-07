@@ -71,7 +71,7 @@ export const CreateTokenButton: FC<Props> = ({
                 </button>
             }
 
-            {tokenAddresss !== "" && <div className="mt-5">✅ Successfuly created! Check it <a target="_blank" href={'https://solscan.io/tx/' + signature}><strong className="underline">here</strong></a></div>}
+            {tokenAddresss !== "" && <div className="mt-5">✅ Successfuly created! Check it <a target="_blank" href={'https://solscan.io/tx/' + signature +'?cluster=devnet'}><strong className="underline">here</strong></a></div>}
 
 
             {error != '' && <div className="mt-2">❌ Ohoh.. {error}</div>}
