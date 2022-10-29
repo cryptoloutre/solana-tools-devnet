@@ -26,6 +26,9 @@ export const UpdateNFTMetadataView: FC = ({ }) => {
 
   const [NFTAddress, setNFTAddress] = useState('')
   const [NFTName, setNFTName] = useState('')
+  const [NFTSymbol, setNFTSymbol] = useState('');
+  const [NFTuri, setNFTuri] = useState('');
+  const [NFTSellerFee, setNFTSellerFee] = useState(0);
   const [NFTDescription, setNFTDescription] = useState('')
   const [NFTImage, setNFTImage] = useState('')
   const [isUpdateAuthority, setIsUpdateAuthority] = useState<boolean>(false)
@@ -61,12 +64,21 @@ export const UpdateNFTMetadataView: FC = ({ }) => {
     try {
       const mintPublickey = new PublicKey(NFTAddress);
       //get the nft object of the NFT
-      const nft = await metaplex.nfts().findByMint({ mintAddress: mintPublickey})
+      const nft = await metaplex.nfts().findByMint({ mintAddress: mintPublickey })
       //get the update authority of the NFT
       const authority = nft.updateAuthorityAddress.toBase58()
       // get the current NFT name
       const name = nft.name
       setNFTName(name)
+      // get the current NFT symbol
+      const symbol = nft.symbol
+      setNFTSymbol(symbol)
+      // get the current NFT uri
+      const uri = nft.uri
+      setNFTuri(uri)
+      // get the current NFT seller fee
+      const sellerFee = nft.sellerFeeBasisPoints
+      setNFTSellerFee(sellerFee)
       // get the current NFT description
       const description = nft.json?.description
       if (description != undefined && description != '') {
@@ -148,25 +160,28 @@ export const UpdateNFTMetadataView: FC = ({ }) => {
       setError('')
       const mintPublickey = new PublicKey(NFTAddress);
       // get the current NFT metadata
-      const nft = await metaplex.nfts().findByMint({ mintAddress: mintPublickey})
+      const nft = await metaplex.nfts().findByMint({ mintAddress: mintPublickey })
       const jsonMetadata = nft.json
 
       // define the object which contains the current NFT metadata
       const newMetadata = { ...jsonMetadata }
-      // define the object which will contains the new NFT metadata
-      const newOnChainData: any = {}
       // define the object which contains the files attached to the NFT
       const newFiles: any[] = []
+
+      let newOnChainName: string = NFTName
+      let newOnChainSymbol: string = NFTSymbol
+      let newOnChainuri: string = NFTuri
+      let newOnChainSellerFee: number = NFTSellerFee
 
       // if a field is not empty, we change its value in the appropriate object
       if (newName != '') {
         newMetadata.name = newName
-        newOnChainData['name'] = newName
+        newOnChainName = newName
       }
 
       if (newSymbol != '') {
         newMetadata.symbol = newSymbol
-        newOnChainData['symbol'] = newSymbol
+        newOnChainSymbol = newSymbol
 
       }
 
@@ -176,7 +191,7 @@ export const UpdateNFTMetadataView: FC = ({ }) => {
 
       if (newRoyalties != '') {
         newMetadata.seller_fee_basis_points = parseFloat(newRoyalties) * 100
-        newOnChainData['sellerFeeBasisPoints'] = parseFloat(newRoyalties) * 100
+        newOnChainSellerFee = parseFloat(newRoyalties) * 100
       }
 
       if (newImageURI != '') {
@@ -227,7 +242,6 @@ export const UpdateNFTMetadataView: FC = ({ }) => {
 
       if (newExternalURL != '') {
         newMetadata.external_url = newExternalURL
-        newOnChainData['external_url'] = newExternalURL
       }
 
       if (newFiles.length != 0) {
@@ -255,14 +269,20 @@ export const UpdateNFTMetadataView: FC = ({ }) => {
 
       if (newUri) {
         console.log(newUri)
-        newOnChainData['uri'] = newUri
+        newOnChainuri = newUri
 
       }
 
       // update the NFT metadata with the new uri
       const updatedNft = await metaplex
         .nfts()
-        .update(newOnChainData);
+        .update({
+          nftOrSft: nft,
+          name: newOnChainName,
+          symbol: newOnChainSymbol,
+          uri: newOnChainuri,
+          sellerFeeBasisPoints: newOnChainSellerFee,
+        });
 
       if (updatedNft) {
         fetchMetadata()
